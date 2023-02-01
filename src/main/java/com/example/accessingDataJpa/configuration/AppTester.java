@@ -1,7 +1,7 @@
 package com.example.accessingDataJpa.configuration;
 
 import com.example.accessingDataJpa.entity.Customer;
-import com.example.accessingDataJpa.repository.CustomerRepository;
+import com.example.accessingDataJpa.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class AppTester {
 
     @Autowired
-    CustomerRepository repository;
+    CustomerService repository;
 
     public AppTester() {
     }
@@ -27,10 +27,37 @@ public class AppTester {
 
         System.out.println("Customers found with findAll():");
         System.out.println("===============================");
-        for (Customer cust : repository.findAll()) {
+        for (Customer cust : repository.getAllCustomers()) {
             System.out.println(cust.toString());
         }
         System.out.println("===============================");
         System.out.println("");
+        
+        System.out.println("Customer found by id = 2:");
+        System.out.println("===============================");
+        Customer cust = repository.getCustomerById(2L);
+            System.out.println(cust.toString());
+        
+        System.out.println("===============================");
+        System.out.println("");
+        
+        System.out.println("Customers found by lastName = 'Black':");
+        System.out.println("===============================");
+        for (Customer c: repository.getAllCustomersByLastName("Black")) {
+            System.out.println(c.toString());
+        }
+        System.out.println("===============================");
+        System.out.println("");
+        
+        System.out.println("Delete Customer by id = 2:");
+        repository.deleteById(2L);
+        System.out.println("Customers found with findAll():");
+        System.out.println("===============================");
+        for (Customer c : repository.getAllCustomers()) {
+            System.out.println(c.toString());
+        }
+        System.out.println("===============================");
+        System.out.println("");
+        
     }
 }

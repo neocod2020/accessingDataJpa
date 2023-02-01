@@ -4,7 +4,6 @@
  */
 package com.example.accessingDataJpa.configuration;
 
-import com.example.accessingDataJpa.entity.Customer;
 import com.example.accessingDataJpa.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
